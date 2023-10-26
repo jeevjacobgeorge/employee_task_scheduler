@@ -1,0 +1,11 @@
+{% extends "layout_admin.html" %}
+{% block body %}
+    <div class="login-container">
+        <h1 class="login-heading">Login</h1>
+        <form class="login-form" action="/login" method="post">
+            <input type="text" name="username_form" class="login-input" autofocus placeholder="Enter Username" required>
+            <input type="password" name="password_form" class="login-input" placeholder="Enter Password" required>
+            <button type="submit" class="login-button">Login</button>
+        </form>
+    </div>
+{% endblock %}
