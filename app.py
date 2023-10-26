@@ -1,5 +1,6 @@
-from flask import Flask,render_template,request,session,redirect
+from flask import Flask,render_template,request,session,redirect,url_for
 from flask_session import Session
+from datetime import date, timedelta
 
 #configure app
 app = Flask(__name__)
@@ -22,19 +23,21 @@ cursor = conn.cursor()
 # Create a table (e.g., 'mytable') with some sample columns
 cursor.execute('''
 CREATE TABLE IF NOT EXISTS employees (
-    emp_id INTEGER PRIMARY KEY,
+    emp_id INTEGER PRIMARY KEY AUTOINCREMENT,
     emp_name TEXT,
-    skills TEXT
+    domain TEXT,
+    #designation TEXT,
+    no_of_tasks INTEGER
 );
 ''')
 
 cursor.execute('''
 CREATE TABLE IF NOT EXISTS tasks (
-    task_id INTEGER PRIMARY KEY,
+    task_id INTEGER PRIMARY KEY AUTOINCREMENT,
     task_name TEXT,
     description TEXT,
+    domain TEXT,
     deadline DATE,
-    skills TEXT
   	emp_id INTEGER,
   	date_assigned DATE
 );
@@ -67,7 +70,6 @@ def manager():
 	if un in DETAILS and DETAILS[un] == pw:
 		return render_template("dashboard.html",username=session.get("Username"))
 	else:
-		
 		return redirect("/login")
 
 # @app.route("/add_task")
@@ -80,3 +82,48 @@ def logout():
 	session["Username"] = None
 	session["Password"] = None
 	return redirect("/login")
+
+@app.route("/add_emp",methods=["POST"])
+def add_emp():
+	e_name = request.form.get("e_name")
+	e_domain = request.form.get("e_domain")
+	if e_name and e_domain:
+		db.execute("INSERT INTO employees(emp_name,domain,no_of_tasks) VALUES(?,?,0)",e_name,e_domain)
+	
+
+
+
+
+@app.route("/assign",methods=["POST"])
+def assign():
+	f_task_name = request.form.get("f_task_name")
+	f_description= request.form.get("f_description")
+	f_deadline = request.form.get("f_deadline")
+	f_domain = request.form.get("f_domain")
+	emps = db.execute("SELECT * FROM employees WHERE domain = ? ORDER BY no_of_tasks",f_domain)
+	curr_date = date.today()
+	date_obj = datetime.strptime(f_deadline, "%Y-%m-%d").date()
+	while curr_date <= date_obj:
+		for emp in eligible_emps:
+			busy = db.execute("SELECT * FROM tasks WHERE emp_id = ? AND date_assigned= ? ",emp["id"],str(curr_date))
+			if not busy:
+				db.execute("INSERT INTO tasks(task_name,description,deadline,domain,emp_id,date_assigned) VALUES(?, ?, ?, ?,?,?)",f_task_name,f_description,f_deadline,f_domain,emp["id"],curr_date)
+				curr_date += timedelta(days=1)
+				emp_name = emp["emp_name"]
+				db.execute("UPDATE TABLE employees SET no_of_tasks = no_of_tasks + 1 WHERE emp_id = ?",emp["emp_id"])
+				break
+		else:
+			continue
+		break
+
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
+
+
+
+
+
