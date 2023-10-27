@@ -23,18 +23,18 @@
             <table>
                 <thead>
                     <tr>
-                        <th>No</th>
                         <th>Employees</th>
+                        <th>Domain</th>
                         {% for i in range(7) %}
-                            <th>{{ dates[i][1] }}</th>
+                            <th>{{ dates[i][0] }}</th>
                         {% endfor %}
                     </tr>
                 </thead>
                 <tbody>
                     {% for data in caldata %}
                     <tr>
-                        <td class="A">{{ data[0] }}</td>
-                        <td><img src="{{ url_for('static', filename='/images/user-regular.svg') }}" alt=""> {{ data[1] }}</td>
+                        <td><img src="{{ url_for('static', filename='/images/user-regular.svg') }}" alt=""> {{ data[0] }}</td>
+                        <td class="A">{{ data[1] }}</td>
                         {% for i in range(7) %}
                             <td class="A"> {{ data[i+2] }} </td>
                         {% endfor %}
@@ -70,5 +70,11 @@
             </div>
         </div>
         <script src="{{ url_for('static', filename='script.js') }}"></script>
+{% if ack %}
+<script >
+    let msg = "{{ ack }}"
+    alert(msg);
+</script>
+{% endif %}
 {% endblock %}
 
