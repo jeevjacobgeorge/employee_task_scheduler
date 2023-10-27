@@ -73,17 +73,31 @@ def manager():
         for i in range(7):
             current_date = today + timedelta(days=i)
             day_of_week = current_date.strftime('%A')
-            dates_and_days.append((current_date.strftime('%d/%m/%y'), day_of_week))
-            id_table = db.execute()
-            emps = db.execute("SELECT emp_id, emp_name FROM employees")
-			for i in range(len(emps)):
-				dates = db.execute("SELECT task_name, date_assigned FROM tasks WHERE emp_id=?",emps[i]["emp_id"])
-				emps[i]["dates"] = {}
-				for date in dates:
-					emps[i]["dates"][date["task_name"]] = date["date_assigned"]		
-        return render_template("dashboard.html", username=session.get("Username"), dates=dates_and_days,emps)
+            dates_and_days.append((current_date.strftime('%Y-%m-%d'), day_of_week))
+        
+        emps = db.execute("SELECT emp_id, emp_name FROM employees")
+        for emp in emps:
+            dates = db.execute("SELECT task_name, date_assigned FROM tasks WHERE emp_id=?", (emp["emp_id"],))
+            emp["dates"] = {}
+            for date in dates:
+                emp["dates"][date["task_name"]] = date["date_assigned"]
+
+       	caldata = []
+       	for emp in emps:
+       		ls = [emp["emp_id"], emp["emp_name"]]
+       		for i in range(7):
+       			for tn, dt in emp["dates"].items():
+       				if dates_and_days[i][0] == dt:
+       					ls.append(tn)
+       					break
+       			else:
+       				ls.append("Free")
+       		caldata.append(ls)
+
+        return render_template("dashboard.html", username=session.get("Username"), dates=dates_and_days, caldata=caldata)
     else:
         return redirect("/login")
+
 
 
 # @app.route("/add_task")
