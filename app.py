@@ -1,6 +1,7 @@
 from flask import Flask,render_template,request,session,redirect,url_for
 from flask_session import Session
-from datetime import date, timedelta
+from datetime import datetime, timedelta
+
 
 #configure app
 app = Flask(__name__)
@@ -26,7 +27,6 @@ CREATE TABLE IF NOT EXISTS employees (
     emp_id INTEGER PRIMARY KEY AUTOINCREMENT,
     emp_name TEXT,
     domain TEXT,
-    #designation TEXT,
     no_of_tasks INTEGER
 );
 ''')
@@ -65,12 +65,26 @@ def login():
 
 @app.route("/manager")
 def manager():
-	un = session.get("Username")
-	pw = session.get("Password")
-	if un in DETAILS and DETAILS[un] == pw:
-		return render_template("dashboard.html",username=session.get("Username"))
-	else:
-		return redirect("/login")
+    un = session.get("Username")
+    pw = session.get("Password")
+    if un in DETAILS and DETAILS[un] == pw:
+        today = datetime.now()
+        dates_and_days = []
+        for i in range(7):
+            current_date = today + timedelta(days=i)
+            day_of_week = current_date.strftime('%A')
+            dates_and_days.append((current_date.strftime('%d/%m/%y'), day_of_week))
+            id_table = db.execute()
+            emps = db.execute("SELECT emp_id, emp_name FROM employees")
+			for i in range(len(emps)):
+				dates = db.execute("SELECT task_name, date_assigned FROM tasks WHERE emp_id=?",emps[i]["emp_id"])
+				emps[i]["dates"] = {}
+				for date in dates:
+					emps[i]["dates"][date["task_name"]] = date["date_assigned"]		
+        return render_template("dashboard.html", username=session.get("Username"), dates=dates_and_days,emps)
+    else:
+        return redirect("/login")
+
 
 # @app.route("/add_task")
 # def add_task():
@@ -89,6 +103,7 @@ def add_emp():
 	e_domain = request.form.get("e_domain")
 	if e_name and e_domain:
 		db.execute("INSERT INTO employees(emp_name,domain,no_of_tasks) VALUES(?,?,0)",e_name,e_domain)
+	return
 	
 
 

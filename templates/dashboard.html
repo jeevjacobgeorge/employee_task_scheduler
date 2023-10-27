@@ -1,7 +1,124 @@
-{% extends "layout_admin.html" %}
+{% extends "layout.html" %}
 {% block body %}
+<header>
+        <input type="checkbox" name="" id ="chk1">
+        <div class="logo"><h1>Assign<span>Hub.io</span></h1></div>
+        
+            <ul>
+                <li><a href="#"> Home</a></li>
+                <li><a href="#"> About</a></li>
+                <li><a href="#"> Contact</a></li>
+                <li><a href="#"><img src="{{ url_for('static', filename='/images/user-solid.svg') }}" alt="" height = "30"></a></li> 
+                <li><a href="/logout"> <img src="{{ url_for('static', filename='/images/power-off-solid.svg') }}" alt="" height = "30"></a></li>
+            </ul>
+        <div class = "menu">
+            <label for="chk1"> <img src="{{ url_for('static', filename='/images/bars-solid.svg') }}" alt=""></label>
+        </div>
+    </header>
+    <main class = "table">
+        <section class = "table_header">
+            <h1><strong>Schedule</strong></h1>
+        </section>
+        <section class = "table_body">
+            <table>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Employees</th>
+                        {% for i in range(7) %}
+                            <th>{{ dates[i][1] }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for emp in emps %}
+                    <tr>
+                        <td class="A">{{ emp['emp_id'] }}</td>
+                        <td><img src="{{ url_for('static', filename='/images/user-regular.svg') }}" alt=""> {{% emp['emp_name'] %}}</td>
+                        {% for i in range(7) %}
+                            {% for tn, dt in emp["dates"] %}
+                                {% if dates[i][1] == dt %}
+                                    {%  <td class="A"> {{ tn }}</td> %}
+                                {% endif %}
+                                {% else %}
+                                     {%  <td class="A">Free</td> %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td class="A">2</td>
+                        <td><img src="{{ url_for('static', filename='/images/user-regular.svg') }}" alt="">Daniel</td>
+                        <td class="A"></td>
+                        <td class="A"></td>
+                        <td class="A">Task3</td>
+                        <td class="A"></td>
+                        <td class="A"></td>
+                        <td class="A"></td>
+                        <td class="A">Task4</td>
+                    </tr>
+                    <tr>
+                        <td class="A">3</td>
+                        <td><img src="{{ url_for('static', filename='/images/user-regular.svg') }}" alt="">Simon</td>
+                        <td class="A"></td>
+                        <td class="A"></td>
+                        <td class="A">Task3</td>
+                        <td class="A"></td>
+                        <td class="A"><p class = "Task assigned">Task 2</p></td>
+                        <td class="A"></td>
+                        <td class="A">Task4</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <div class="buttons">
+      <button id="showFormButton">Add Task</button>
+      <div id="detailsForm" class="hidden">
+        <form id="inputForm">
+      <label for="field1">Enter Task Name:</label>
+      <input type="text" id="field1" name="field1" required><br>
 
-    <p class="user-info">You are logged in as {{ username }}</p>
-    <a href="/logout" class="btn">Logout</a>
+      <label for="field3">Task Description:</label>
+      <input type="text" id="field2" name="field2" required><br>
+
+      <label for="field2">Deadline:</label>
+      <input type="date" id="field3" name="field3" required><br>
+
+      <label for="field4">Domain:</label>
+      <select id="field4" name="field4" required>
+        <option value="BackEnd">BackEnd</option>
+        <option value="FrontEnd">FrontEnd</option>
+        <option value="Testing">Testing</option>
+        <option value="UI/UX">UI/UX</option>
+      </select><br>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+  <button id="showSecondFormButton">Add Employee</button>
+  <div id="details2Form" class="hidden">
+    <form id="secondForm">
+      <label for="field5">Name:</label>
+      <input type="text" id="field5" name="field5" required><br>
+
+      <label for="field6">Domain:</label>
+      <select id="field6" name="field6" required>
+        <option value="BackEnd">BackEnd</option>
+        <option value="FrontEnd">FrontEnd</option>
+        <option value="Testing">Testing</option>
+        <option value="UI/UX">UI/UX</option>
+      </select><br>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <div id="submittedDetails" class="hidden">
+    <p id="submittedText"></p>
+  </div>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+    </div>
 {% endblock %}
 
