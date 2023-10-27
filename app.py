@@ -15,7 +15,7 @@ DETAILS = {"manager123":"1234"}
 #database code
 import sqlite3
 # Connect to or create a new SQLite database (e.g., mydb.db)
-conn = sqlite3.connect('database.db')
+conn = sqlite3.connect('../database.db')
 
 # Create a cursor object to execute SQL commands
 cursor = conn.cursor()
@@ -49,7 +49,7 @@ conn.close()
 ack = ""
 
 from cs50 import SQL
-db = SQL("sqlite:///database.db")
+db = SQL("sqlite:///../database.db")
 
 @app.route("/")
 def index():
