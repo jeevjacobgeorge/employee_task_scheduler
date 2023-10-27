@@ -50,15 +50,15 @@
             <!-- Task Form -->
             <div id="forms" class="button">
                 <div id="detailsForm" class="">
-                    <form id="inputForm">
+                    <form id="inputForm" method = "post", action="/assign">
                         <label for="field1">Task Name:</label>
-                        <input type="text" class="field" id="field1" name="field1" required><br>
+                        <input type="text" class="field" id="field1" name="f_task_name" required><br>
                         <label for="field2">Description:</label>
-                        <input type="text" class="field" id="field2" name="field2" required><br>
+                        <input type="text" class="field" id="field2" name="f_description" required><br>
                         <label for="field3">Deadline:</label>
-                        <input type="date" class="field" id="field3" name="field3" required><br>
+                        <input type="date" class="field" id="field3" name="f_deadline" required><br>
                         <label for="field4">Domain:</label>
-                        <select id="field4" class="field" name="field4" required>
+                        <select id="field4" class="field" name="f_domain" required>
                             <option value="BackEnd">BackEnd</option>
                             <option value="FrontEnd">FrontEnd</option>
                             <option value="Testing">Testing</option>

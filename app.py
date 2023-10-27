@@ -1,7 +1,6 @@
 from flask import Flask,render_template,request,session,redirect,url_for
 from flask_session import Session
-from datetime import datetime, timedelta
-
+from datetime import date, timedelta, datetime
 
 #configure app
 app = Flask(__name__)
@@ -98,11 +97,6 @@ def manager():
     else:
         return redirect("/login")
 
-
-
-
-
-
 @app.route("/logout")
 def logout():	
 	session["Username"] = None
@@ -130,26 +124,18 @@ def assign():
 	curr_date = date.today()
 	date_obj = datetime.strptime(f_deadline, "%Y-%m-%d").date()
 	while curr_date <= date_obj:
-		for emp in eligible_emps:
-			busy = db.execute("SELECT * FROM tasks WHERE emp_id = ? AND date_assigned= ? ",emp["id"],str(curr_date))
+		for emp in emps:
+			busy = db.execute("SELECT * FROM tasks WHERE emp_id = ? AND date_assigned= ? ",emp["emp_id"],str(curr_date))
 			if not busy:
-				db.execute("INSERT INTO tasks(task_name,description,deadline,domain,emp_id,date_assigned) VALUES(?, ?, ?, ?,?,?)",f_task_name,f_description,f_deadline,f_domain,emp["id"],curr_date)
-				curr_date += timedelta(days=1)
+				db.execute("INSERT INTO tasks(task_name,description,deadline,domain,emp_id,date_assigned) VALUES(?, ?, ?, ?,?,?)",f_task_name,f_description,f_deadline,f_domain,emp["emp_id"],curr_date)
 				emp_name = emp["emp_name"]
-				db.execute("UPDATE TABLE employees SET no_of_tasks = no_of_tasks + 1 WHERE emp_id = ?",emp["emp_id"])
+				db.execute("UPDATE employees SET no_of_tasks = no_of_tasks + 1 WHERE emp_id = ?",emp["emp_id"])
 				break
 		else:
+			curr_date += timedelta(days=1)
 			continue
 		break
-
-
+	return redirect("/")
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-
-
-
-
-
-
