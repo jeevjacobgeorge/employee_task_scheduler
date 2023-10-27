@@ -10,7 +10,7 @@ app.config['SESSION_PERMANENT'] = False
 app.config['SESSION_TYPE'] = 'filesystem'
 Session(app)
 
-DETAILS = {"manager@mulearn":"karma"}
+DETAILS = {"manager123":"1234"}
 
 #database code
 import sqlite3
@@ -92,7 +92,7 @@ def manager():
        					ls.append(tn)
        					break
        			else:
-       				ls.append("Free")
+       				ls.append("--")
        		caldata.append(ls)
 
         return render_template("dashboard.html", username=session.get("Username"), dates=dates_and_days, caldata=caldata, ack=ack)
