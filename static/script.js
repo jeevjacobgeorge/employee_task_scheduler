@@ -19,14 +19,14 @@ document.addEventListener("DOMContentLoaded", function() {
     showFormButton.classList.add("hidden");
   });
 
-  showSecondFormButton.addEventListener("click", function() {
-    forms.classList.remove("button", "hidden");
-    forms.classList.add("button");
-    details2Form.classList.remove("button", "hidden");
-    details2Form.classList.add("button");
-    showSecondFormButton.classList.remove("button", "hidden");
-    showSecondFormButton.classList.add("hidden");
-  });
+  // showSecondFormButton.addEventListener("click", function() {
+  //   forms.classList.remove("button", "hidden");
+  //   forms.classList.add("button");
+  //   details2Form.classList.remove("button", "hidden");
+  //   details2Form.classList.add("button");
+  //   showSecondFormButton.classList.remove("button", "hidden");
+  //   showSecondFormButton.classList.add("hidden");
+  // });
 
   inputForm.addEventListener("submit", function(event) {
     event.preventDefault(); // Prevent the default form submission behavior
@@ -52,22 +52,22 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   // Event listener for the second form
-  secondForm.addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent the default form submission behavior
+  // secondForm.addEventListener("submit", function(event) {
+  //   event.preventDefault(); // Prevent the default form submission behavior
 
-    const field5Input = document.getElementById("field5").value;
-    const field6Input = document.getElementById("field6").value;
+  //   const field5Input = document.getElementById("field5").value;
+  //   const field6Input = document.getElementById("field6").value;
 
-    // Process and display the second form data
-    const submittedTextContent = `
-      Name: ${field5Input}<br>
-      Domain: ${field6Input}
-    `;
+  //   // Process and display the second form data
+  //   const submittedTextContent = `
+  //     Name: ${field5Input}<br>
+  //     Domain: ${field6Input}
+  //   `;
 
-    submittedText.innerHTML = "Employee Details submitted:<br>" + submittedTextContent;
+  //   submittedText.innerHTML = "Employee Details submitted:<br>" + submittedTextContent;
 
-    submittedDetails.classList.remove("hidden");
-    secondFormContainer.classList.add("hidden");
-    showSecondFormButton.classList.remove("hidden");
-  });
+  //   submittedDetails.classList.remove("hidden");
+  //   secondFormContainer.classList.add("hidden");
+  //   showSecondFormButton.classList.remove("hidden");
+  // });
 });

@@ -1,4 +1,11 @@
-
+html{
+    height: 100%;
+    margin: 0;
+    background: url("images/pexels-eberhard-grossgasteiger-1287075.jpg");    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
 *{
     margin: 0px;
     padding: 0px;
@@ -8,11 +15,6 @@
 body {
     height: 100%;
     width: 100%;
-    background: url("images/pexels-eberhard-grossgasteiger-1287075.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 100vh;
-    background-position:;
     margin: 0; 
     padding-top: 10rem;
 }
@@ -24,6 +26,7 @@ header{
     justify-content: space-between;
     align-items: center;
     position: fixed;
+    backdrop-filter: blur(7px);
     z-index: 99;
     top:0;
     left:0;
@@ -34,10 +37,10 @@ header{
     border-radius: 85px;
     width: 45%;
     text-align: center;
-    
+    border-color: black;
 }
 .logo h1{
-    color: rgba(0, 0, 255, 0.365);
+    color: rgba(223, 12, 206, 0.6);
 }
 .logo h1 span{
     font-weight: bolder ;
@@ -55,35 +58,7 @@ header .logo{
     margin-left: 50px;
     /*text-transform: uppercase;*/
 }
-header .search_box{
-    flex: 1;
-    position: relative;
-}
-.search_box input{
-    width: 100%;
-    height: 40px;
-    border: none;
-    outline: none;
-    background: rgba(23, 15, 15,0.1);
-    border-radius: 30px;
-    color: gray;
-    font-size: 16px;
-    outline: #0000;
-    text-align: center;
-    
-}
-.search_box button{
-    cursor: pointer;
-    width: 40px;
-    height: 40px;
-    border-radius: 30px;
-    border: none;
-    position: absolute;
-    top:0;
-    right:0;
-    transform: scale(0.9);
-    background: green;
-}
+
 header ul{
     flex: 2;
     display: flex;
@@ -190,60 +165,113 @@ tbody tr:hover{
     background-color: rgba(54, 51, 51, 0.4);
 }
 
-/* Apply some basic styling to the buttons */
-.buttons{
-    margin-top: 4%;
-    padding-left: 42%;
+
+.button{
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    width: 400px;
+    border: 1px solid black;
+    align-items: center;
+    margin: auto;
+    margin-top: 50px;
+    background-color: #fff5;
+    box-shadow: inset -5px -5px rgba(0,0,0,.5);
+    border-radius: 25px;
+    padding-top: 20px;
+    align-items: center;
+    backdrop-filter: blur(7px);
 }
-button {
-    padding: 10px 20px;
-    background-color: rgba(91, 52, 160,.7);
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    margin: 5px;
-    border-radius: 20px;
-  }
-  
-  /* Style the form containers */
-  #detailsForm,
-  #secondFormContainer {
-    margin-top: 20px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  /* Style form labels */
-  label {
-    display: block;
-    margin-top: 10px;
-    font-weight: bold;
-  }
-  
-  /* Style input fields and select boxes */
-  input[type="text"],
-  input[type="date"],
-  select {
-    width: 100%;
+
+.btn{
+    display: inline;
+    justify-content: space-around;
+    margin-top: 50px ;
     padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  /* Style the submit buttons within the forms */
-  form button[type="submit"] {
-    background-color: #007BFF;
-    color: #fff;
+    width: 150px;
+    border-radius: 30px;
+    background: white;
+    font-size: 15px;
+    font-weight: bold;
+}
+.btn:hover{
+    color: white;
+    background-color: transparent;
+}
+#showSecondFormButton, #showFormButton{
+    margin-left: 150px;
+}
+label {
+    color: white;
+    font-size: 1rem;
+    border-bottom: 4px solid rgba(255,255,255,.3);
+    margin: 50px;
+    width: 50%;
+    text-decoration: none;
+}
+.field{
+    padding: 10px;
+    padding-left: 5px;
+    margin: 10px;
+    width: 45%;
+    margin-top: 30px;
     border: none;
+    outline: none;
+    border-radius: 20px;
+    background-color: rgba(0,0,0,.3);
+    box-shadow: inset -3px -3px rgba(0,0,0,.3);
+    font-size: .5 rem;
+    color: white;
+}
+.submit{
+    padding: 10px;
+    margin-left: 90px;
+    margin-top: 50px;
+    width: 50%;
+    background-color: rgba(0,0,0,.3);
+    color: white;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    font-size: 1rem;
+}
+.submit:hover{
     cursor: pointer;
-    padding: 10px 20px;
-    margin-top: 10px;
+    background-color: rgba(255,255,255,.1);
+    color: white;
+}
+::placeholder{
+    opacity: .7;
+    color: white;
+}
+input[type="date"] {
+    background-color: rgba(255,255,255,.1);
+    color: #ffffff;
+    font-size: 1rem;
+    border: none;
+    outline: none;
     border-radius: 5px;
-  }
-  
+}
+::-webkit-calendar-picker-indicator{
+    background-color: #ffffff;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+    
+}
+
   /* Hide initially hidden elements */
-  .hidden {
+.hidden {
     display: none;
-  }
+}
+#submittedDetails{
+    align-content: center;
+    
+    color: white;
+    position: absolute;
+    bottom:-300px;
+    left: 500px;
+    bottom:-350px;
+    padding: 50px;
+    font-size: 25px;
+}

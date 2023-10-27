@@ -44,51 +44,31 @@
             </table>
         </section>
     </main>
-<div class="buttons">
-      <button id="showFormButton" class = "btn">Add Task</button>
-      <div id="forms" class="button hidden">
-        <div id="detailsForm" class="hidden">
-          <form id="inputForm">
-        <label for="field1">Task Name:</label>
-        <input type="text" class="field" id="field1" name="field1" required><br>
-  
-        <label for="field2">Description:</label>
-        <input type="text" class="field" id="field2"name="field2" required><br>
-  
-        <label for="field3">Deadline:</label>
-        <input type="date" class="field"id="field3" name="field3" required><br>
-  
-        <label for="field4">Domain:</label>
-        <select id="field4"class="field" name="field4" required>
-          <option value="BackEnd">BackEnd</option>
-          <option value="FrontEnd">FrontEnd</option>
-          <option value="Testing">Testing</option>
-          <option value="UI/UX">UI/UX</option>
-        </select><br>
-        <button type="submit" class = "submit">Submit</button>
-      </form>
-      </div>
-      </div>
-  <button id="showSecondFormButton" class = "btn">Add Employee</button>
-  <div id = "forms" class="button hidden">
-    <div id="details2Form" class="hidden">
-        <form id="secondForm">
-          <label for="field5">Name:</label>
-          <input type="text" id="field5"class="field" name="field5" required><br>
-    
-          <label for="field6">Domain:</label>
-          <select id="field6" class="field" name="field6" required>
-            <option value="BackEnd">BackEnd</option>
-            <option value="FrontEnd">FrontEnd</option>
-            <option value="Testing">Testing</option>
-            <option value="UI/UX">UI/UX</option>
-          </select><br>
-    
-          <button type="submit" class = "submit">Submit</button>
-        </form>
-      </div>
-    </div>
-  <script src="{{ url_for('static', filename='script.js') }}"></script>
-    </div>
+       <div class="buttons">
+            <!-- Add Task Button -->
+            <!-- <button id="showFormButton" class="btn">Add Task</button> -->
+            <!-- Task Form -->
+            <div id="forms" class="button">
+                <div id="detailsForm" class="">
+                    <form id="inputForm">
+                        <label for="field1">Task Name:</label>
+                        <input type="text" class="field" id="field1" name="field1" required><br>
+                        <label for="field2">Description:</label>
+                        <input type="text" class="field" id="field2" name="field2" required><br>
+                        <label for="field3">Deadline:</label>
+                        <input type="date" class="field" id="field3" name="field3" required><br>
+                        <label for="field4">Domain:</label>
+                        <select id="field4" class="field" name="field4" required>
+                            <option value="BackEnd">BackEnd</option>
+                            <option value="FrontEnd">FrontEnd</option>
+                            <option value="Testing">Testing</option>
+                            <option value="UI/UX">UI/UX</option>
+                        </select><br>
+                        <button type="submit" class="submit btn">Add Task</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script src="{{ url_for('static', filename='script.js') }}"></script>
 {% endblock %}
 

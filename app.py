@@ -100,8 +100,6 @@ def manager():
 
 
 
-# @app.route("/add_task")
-# def add_task():
 
 
 
@@ -117,8 +115,7 @@ def add_emp():
 	e_domain = request.form.get("e_domain")
 	if e_name and e_domain:
 		db.execute("INSERT INTO employees(emp_name,domain,no_of_tasks) VALUES(?,?,0)",e_name,e_domain)
-	return
-	
+	return redirect("/")
 
 
 
