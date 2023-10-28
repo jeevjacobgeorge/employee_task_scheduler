@@ -6,10 +6,11 @@
             <ul>
                 <li><a href="#"> Home</a></li>
                 <li><a href="#"> About</a></li>
-                <li><a href="#"> Contact</a></li>
+                <li><a href="/contact"> Contact</a></li>
                 <li><a href="#"><img src="{{ url_for('static', filename='/images/user-solid.svg') }}" alt="" height = "30"></a></li> 
                 <li><a href="/logout"> <img src="{{ url_for('static', filename='/images/power-off-solid.svg') }}" alt="" height = "30"></a></li>
             </ul>
+            
         <div class = "menu">
             <label for="chk1"> <img src="{{ url_for('static', filename='/images/bars-solid.svg') }}" alt=""></label>
         </div>
@@ -48,33 +49,34 @@
             <!-- <button id="showFormButton" class="btn">Add Task</button> -->
             <!-- Task Form -->
             <div id="forms" class="button">
-                <div id="detailsForm" class="">
-                    <form id="inputForm" method = "post", action="/assign">
-                        <label for="field1">Task Name:</label>
-                        <input type="text" class="field" id="field1" name="f_task_name" required><br>
-                        <label for="field2">Description:</label>
-                        <input type="text" class="field" id="field2" name="f_description" required><br>
-                        <label for="field3">Deadline:</label>
-                        <input type="date" class="field" id="field3" name="f_deadline" required><br>
-                        <!-- To disable past date selection -->
-                        <script>
-                          // Get the current date in "YYYY-MM-DD" format
-                          const currentDate = new Date().toISOString().split('T')[0];
-                          
-                          // Set the min attribute to the current date
-                          document.getElementById('field3').setAttribute('min', currentDate);
-                        </script>
-                        <label for="field4">Domain:</label>
-                        <select id="field4" class="field_option" name="f_domain" required>
-                            <option disabled selected >Select</option>
-                            <option value="BackEnd">BackEnd</option>
-                            <option value="FrontEnd">FrontEnd</option>
-                            <option value="Testing">Testing</option>
-                            <option value="UI/UX">UI/UX</option>
-                        </select><br>
-                        <button type="submit" class="submit btn">Add Task</button>
-                    </form>
-                </div>
+                
+                <form id="inputForm" method = "post", action="/assign">
+                    <label for="field1">*Task Name:</label>
+                    <input type="text" class="field" id="field1" name="f_task_name" required><br>
+                    
+                    <!-- To disable past date selection -->
+                    <script>
+                        // Get the current date in "YYYY-MM-DD" format
+                        const currentDate = new Date().toISOString().split('T')[0];
+                        
+                        // Set the min attribute to the current date
+                        document.getElementById('field3').setAttribute('min', currentDate);
+                    </script>
+                    <label for="field4">*Domain:&nbsp&nbsp&nbsp</label>
+                    <select id="field4" class="field_option" name="f_domain" required>
+                        <option disabled selected >Select</option>
+                        <option value="BackEnd">BackEnd</option>
+                        <option value="FrontEnd">FrontEnd</option>
+                        <option value="Testing">Testing</option>
+                        <option value="UI/UX">UI/UX</option>
+                    </select><br>
+                    <label for="field3">*Deadline:&nbsp&nbsp&nbsp&nbsp</label>
+                    <input type="date" class="field" id="field3" name="f_deadline" required><br>
+                    <label for="field2">Details:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+                    <input type="text" class="field" id="field2" name="f_description" ><br>
+                    <button type="submit" class="submit btn">Add Task</button>
+                </form>
+                
             </div>
         </div>
 <script src="{{ url_for('static', filename='script.js') }}"></script>

@@ -10,7 +10,7 @@ app.config['SESSION_PERMANENT'] = False
 app.config['SESSION_TYPE'] = 'filesystem'
 Session(app)
 
-DETAILS = {"manager123":"1234"}
+DETAILS = {"manager":"1234"}
 
 #database code
 import sqlite3
@@ -142,6 +142,10 @@ def assign():
 		ack = "There are no suitable employee."
 	print(ack)
 	return redirect("/manager")
+
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
 
 if __name__ == '__main__':
     app.run(debug=True)

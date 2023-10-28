@@ -1,7 +1,8 @@
 html{
     height: 100%;
     margin: 0;
-    background: url("images/pexels-eberhard-grossgasteiger-1287075.jpg");    background-repeat: no-repeat;
+    background: url("images/pexels-eberhard-grossgasteiger-1287075.jpg");  
+     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
@@ -170,7 +171,7 @@ tbody tr:hover{
     display: flex;
     flex-direction: column;
     height: 500px;
-    width: 400px;
+    width: 400px ;
     border: 1px solid black;
     align-items: center;
     margin: auto;
