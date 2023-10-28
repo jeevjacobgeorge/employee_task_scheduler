@@ -1,7 +1,7 @@
 html{
     height: 100%;
     margin: 0;
-    background: url("images/pexels-eberhard-grossgasteiger-1287075.jpg");  
+    background: url("images/pexels-eberhard-grossgasteiger-1287075.jpg");
      background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -16,7 +16,7 @@ html{
 body {
     height: 100%;
     width: 100%;
-    margin: 0; 
+    margin: 0;
     padding-top: 10rem;
 }
 
@@ -93,7 +93,7 @@ main.table{
     border-radius: .8rem;
     overflow: hidden;
     margin: 0 auto;
-    
+
 }
 
 .table_header{
@@ -107,7 +107,7 @@ main.table{
     font-size: 1.5 rem;
     color:  rgb(177, 16, 192);
     padding: 7px;
-    
+
 }
 .table_body{
     width: 95%;
@@ -136,7 +136,7 @@ table{
 }
 td {
     width: 150vw;
-    
+
 }
 .A{
     padding-left: 40px;
@@ -151,7 +151,7 @@ td img{
 table, th,td{
     border-collapse: collapse;
     padding: 1rem;
-    
+
 }
 thead th{
     position: sticky;
@@ -272,7 +272,7 @@ input[type="date"] {
     padding: 5px;
     cursor: pointer;
     border-radius: 3px;
-    
+
 }
 
   /* Hide initially hidden elements */
@@ -281,7 +281,7 @@ input[type="date"] {
 }
 #submittedDetails{
     align-content: center;
-    
+
     color: white;
     position: absolute;
     bottom:-300px;
@@ -300,3 +300,137 @@ input[type="date"] {
             padding: 20px;
             border: 1px solid #ccc;
         }
+/* for contact us page*/
+.container{
+    margin-top: -150px;
+    min-height: 100vh;
+    background: #08071d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url("pexels-eberhard-grossgasteiger") center/ cover;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container form{
+    width: 670px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    box-shadow: 20px 20px 50px rgba(0,0,0,0.5);
+    border-radius: 15px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    flex-wrap: wrap;
+}
+
+.container form h1{
+    color: #fff;
+    font-weight: 500;
+    margin-top: 20px;
+    width: 500px;
+    text-align: center;
+}
+
+.container form input{
+    width: 290px;
+    height: 40px;
+    padding-left: 10px;
+    outline: none;
+    border: none;
+    font-size: 15px;
+    margin-bottom: 10px;
+    background: none;
+    border-bottom: 2px solid #fff;
+    color: white;
+}
+
+.container form input::placeholder{
+    color: #ddd;
+}
+
+.container form #lastName,
+.container form #mobile{
+    margin-left: 20px;
+}
+
+.container form h4{
+    color: #fff;
+    font-weight: 300;
+    width: 600px;
+    margin-top: 20px;
+}
+
+.container form textarea{
+    background: none;
+    border: none;
+    border-bottom: 2px solid #fff;
+    color: #fff;
+    font-weight: 200;
+    font-size: 15px;
+    padding: 10px;
+    outline: none;
+    min-width: 600px;
+    max-width: 600px;
+    min-height: 80px;
+    max-height: 80px;
+}
+
+textarea::-webkit-scrollbar{
+    width: 1em;
+}
+
+textarea::-webkit-scrollbar-thumb{
+    background-color: rgba(194,194,194,0.713);
+}
+
+.container form #button{
+    border: none;
+    background: #fff;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-weight: 600;
+    font-size: 20px;
+    color: #333;
+    width: 100px;
+    padding: 0;
+    margin-right: 500px;
+    margin-bottom: 30px;
+    transition: 0.3s;
+}
+
+.container form #button:hover{
+    opacity: 0.7;
+}
+.container_about{
+    margin-top: 60px;
+    margin-left: 60px;
+    min-height: 50vh;
+    width: 80rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    justify-content: center;
+    box-shadow: 20px 20px 50px rgba(0,0,0,0.5);
+    border-radius: 15px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    flex-wrap: wrap;
+    padding: 30px;
+}
+.head{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    margin-left: -10px;
+    font-size: 32px;
+}
+.head h1{
+    text-align: center;
+}
+.container_about p{
+    font-size: 20px;
+}

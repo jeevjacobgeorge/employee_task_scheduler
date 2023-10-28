@@ -1,6 +1,8 @@
 from flask import Flask,render_template,request,session,redirect,url_for
 from flask_session import Session
 from datetime import date, timedelta, datetime
+import sqlite3
+from cs50 import SQL
 
 #configure app
 app = Flask(__name__)
@@ -10,12 +12,11 @@ app.config['SESSION_PERMANENT'] = False
 app.config['SESSION_TYPE'] = 'filesystem'
 Session(app)
 
-DETAILS = {"manager":"1234"}
+DETAILS = {"manager@assignhub.io":"12345678"}
+ack = "" #acknoweledgement Message 
 
-#database code
-import sqlite3
 # Connect to or create a new SQLite database (e.g., mydb.db)
-conn = sqlite3.connect('.././database.db')
+conn = sqlite3.connect('data.db')
 
 # Create a cursor object to execute SQL commands
 cursor = conn.cursor()
@@ -46,14 +47,13 @@ CREATE TABLE IF NOT EXISTS tasks (
 conn.commit()
 conn.close()
 
-ack = ""
 
-from cs50 import SQL
-db = SQL("sqlite:///.././database.db")
+db = SQL("sqlite:///data.db")
 
 @app.route("/")
 def index():
 	return redirect("/manager")
+
 
 #admin routes
 @app.route("/login", methods=["GET","POST"])
@@ -65,6 +65,7 @@ def login():
 				ack = ""
 				return redirect("/manager")
 		return render_template("login.html")
+
 
 @app.route("/manager")
 def manager():
@@ -101,11 +102,13 @@ def manager():
     else:
         return redirect("/login")
 
+
 @app.route("/logout")
 def logout():
 	session["Username"] = None
 	session["Password"] = None
 	return redirect("/login")
+
 
 @app.route("/add_emp",methods=["POST"])
 def add_emp():
@@ -114,6 +117,7 @@ def add_emp():
 	if e_name and e_domain:
 		db.execute("INSERT INTO employees(emp_name,domain,no_of_tasks) VALUES(?,?,0)",e_name,e_domain)
 	return redirect("/")
+
 
 @app.route("/assign",methods=["POST"])
 def assign():
@@ -132,7 +136,7 @@ def assign():
 			if not busy:
 				db.execute("INSERT INTO tasks(task_name,description,deadline,domain,emp_id,date_assigned) VALUES(?, ?, ?, ?,?,?)",f_task_name,f_description,f_deadline,f_domain,emp["emp_id"],curr_date)
 				db.execute("UPDATE employees SET no_of_tasks = no_of_tasks + 1 WHERE emp_id = ?",emp["emp_id"])
-				ack = f"Assingned to {emp['emp_name']} on {curr_date}!"
+				ack = f"Assigned to {emp['emp_name']} on {curr_date}"
 				break
 		else:
 			curr_date += timedelta(days=1)
@@ -143,9 +147,16 @@ def assign():
 	print(ack)
 	return redirect("/manager")
 
+
 @app.route("/contact")
 def contact():
     return render_template("contact.html")
+
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
 
 if __name__ == '__main__':
     app.run(debug=True)

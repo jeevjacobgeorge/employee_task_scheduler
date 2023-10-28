@@ -5,13 +5,13 @@
         <div class="logo"><h1>Assign<span>Hub.io</span></h1></div>
             <ul>
                 <li><a href="/manager"> Home</a></li>
-                <li><a href="/contact"> About</a></li>
+                <li><a href="/about"> About</a></li>
                 <li><a href="/contact"> Contact</a></li>
                 <li><a href="#"><img src="{{ url_for('static', filename='/images/user-solid.svg') }}" alt="" height = "30"></a></li>
                 <!--<li>{{ username }}</li> -->
                 <li><a href="/logout"> <img src="{{ url_for('static', filename='/images/power-off-solid.svg') }}" alt="" height = "30"></a></li>
             </ul>
-            
+
         <div class = "menu">
             <label for="chk1"> <img src="{{ url_for('static', filename='/images/bars-solid.svg') }}" alt=""></label>
         </div>
@@ -50,20 +50,20 @@
             <!-- <button id="showFormButton" class="btn">Add Task</button> -->
             <!-- Task Form -->
             <div id="forms" class="button">
-                
+
                 <form id="inputForm" method = "post", action="/assign">
                     <label for="field1">*Task Name:</label>
                     <input type="text" class="field" id="field1" name="f_task_name" required><br>
-                    
+
                     <!-- To disable past date selection -->
                     <script>
                         // Get the current date in "YYYY-MM-DD" format
                         const currentDate = new Date().toISOString().split('T')[0];
-                        
+
                         // Set the min attribute to the current date
                         document.getElementById('field3').setAttribute('min', currentDate);
                     </script>
-                    <label for="field4">*Domain:&nbsp&nbsp&nbsp</label>
+                    <label for="field4">*Domain:&nbsp&nbsp&nbsp&nbsp&nbsp</label>
                     <select id="field4" class="field_option" name="f_domain" required>
                         <option disabled selected >Select</option>
                         <option value="BackEnd">BackEnd</option>
@@ -73,11 +73,11 @@
                     </select><br>
                     <label for="field3">*Deadline:&nbsp&nbsp&nbsp&nbsp</label>
                     <input type="date" class="field" id="field3" name="f_deadline" required><br>
-                    <label for="field2">Details:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+                    <label for="field2">Task Details:</label>
                     <input type="text" class="field" id="field2" name="f_description" ><br>
-                    <button type="submit" class="submit btn">Add Task</button>
+                    <button type="submit" class="submit btn">Assign Task</button>
                 </form>
-                
+
             </div>
         </div>
 <script src="{{ url_for('static', filename='script.js') }}"></script>
@@ -85,12 +85,12 @@
     <p id="notificationMessage"></p>
 </div>
 <!-- To print the acknowlegement message -->
-{% if ack %}           
+{% if ack %}
 <script>
         let msg = "{{ ack }}"; // Your message here
         const customNotification = document.getElementById('customNotification');
         const notificationMessage = document.getElementById('notificationMessage');
-        
+
         notificationMessage.textContent = msg;
         customNotification.style.display = 'block';
 
@@ -98,7 +98,7 @@
         setTimeout(function() {
             customNotification.style.display = 'none';
         }, 3000); // Display for 3 seconds
-    
+
 </script>
 {% endif %}
 
