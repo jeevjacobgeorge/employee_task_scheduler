@@ -4,10 +4,11 @@
         <input type="checkbox" name="" id ="chk1">
         <div class="logo"><h1>Assign<span>Hub.io</span></h1></div>
             <ul>
-                <li><a href="#"> Home</a></li>
-                <li><a href="#"> About</a></li>
+                <li><a href="/manager"> Home</a></li>
+                <li><a href="/contact"> About</a></li>
                 <li><a href="/contact"> Contact</a></li>
-                <li><a href="#"><img src="{{ url_for('static', filename='/images/user-solid.svg') }}" alt="" height = "30"></a></li> 
+                <li><a href="#"><img src="{{ url_for('static', filename='/images/user-solid.svg') }}" alt="" height = "30"></a></li>
+                <!--<li>{{ username }}</li> -->
                 <li><a href="/logout"> <img src="{{ url_for('static', filename='/images/power-off-solid.svg') }}" alt="" height = "30"></a></li>
             </ul>
             
