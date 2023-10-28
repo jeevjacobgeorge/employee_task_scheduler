@@ -1,7 +1,8 @@
 html{
     height: 100%;
     margin: 0;
-    background: url("images/pexels-eberhard-grossgasteiger-1287075.jpg");    background-repeat: no-repeat;
+    background: url("images/pexels-eberhard-grossgasteiger-1287075.jpg");  
+     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
@@ -170,7 +171,7 @@ tbody tr:hover{
     display: flex;
     flex-direction: column;
     height: 500px;
-    width: 400px;
+    width: 400px ;
     border: 1px solid black;
     align-items: center;
     margin: auto;
@@ -222,6 +223,20 @@ label {
     box-shadow: inset -3px -3px rgba(0,0,0,.3);
     font-size: .5 rem;
     color: white;
+}
+.field_option{
+    padding: 10px;
+    padding-left: 5px;
+    margin: 10px;
+    width: 45%;
+    margin-top: 30px;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    background-color: rgba(0,0,0,.3);
+    box-shadow: inset -3px -3px rgba(0,0,0,.3);
+    font-size: .5 rem;
+    color: black;
 }
 .submit{
     padding: 10px;
@@ -275,3 +290,13 @@ input[type="date"] {
     padding: 50px;
     font-size: 25px;
 }
+.modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
