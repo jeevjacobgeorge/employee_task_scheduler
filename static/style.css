@@ -232,7 +232,7 @@ label {
     border: none;
     outline: none;
     border-radius: 20px;
-    background-color: rgba(0,0,0,.6);
+    background-color: rgba(0,0,0,.3);
     box-shadow: inset -3px -3px rgba(0,0,0,.3);
     font-size: .5 rem;
     color: black;
