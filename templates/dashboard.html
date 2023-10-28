@@ -3,7 +3,6 @@
 <header>
         <input type="checkbox" name="" id ="chk1">
         <div class="logo"><h1>Assign<span>Hub.io</span></h1></div>
-        
             <ul>
                 <li><a href="#"> Home</a></li>
                 <li><a href="#"> About</a></li>
@@ -57,8 +56,17 @@
                         <input type="text" class="field" id="field2" name="f_description" required><br>
                         <label for="field3">Deadline:</label>
                         <input type="date" class="field" id="field3" name="f_deadline" required><br>
+                        <!-- To disable past date selection -->
+                        <script>
+                          // Get the current date in "YYYY-MM-DD" format
+                          const currentDate = new Date().toISOString().split('T')[0];
+                          
+                          // Set the min attribute to the current date
+                          document.getElementById('field3').setAttribute('min', currentDate);
+                        </script>
                         <label for="field4">Domain:</label>
-                        <select id="field4" class="field" name="f_domain" required>
+                        <select id="field4" class="field_option" name="f_domain" required>
+                            <option disabled selected >Select</option>
                             <option value="BackEnd">BackEnd</option>
                             <option value="FrontEnd">FrontEnd</option>
                             <option value="Testing">Testing</option>
@@ -69,12 +77,27 @@
                 </div>
             </div>
         </div>
-        <script src="{{ url_for('static', filename='script.js') }}"></script>
-{% if ack %}
-<script >
-    let msg = "{{ ack }}"
-    alert(msg);
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+<div id="customNotification" class="modal">
+    <p id="notificationMessage"></p>
+</div>
+<!-- To print the acknowlegement message -->
+{% if ack %}           
+<script>
+        let msg = "{{ ack }}"; // Your message here
+        const customNotification = document.getElementById('customNotification');
+        const notificationMessage = document.getElementById('notificationMessage');
+        
+        notificationMessage.textContent = msg;
+        customNotification.style.display = 'block';
+
+        // Close the custom notification after a few seconds (adjust the timeout as needed)
+        setTimeout(function() {
+            customNotification.style.display = 'none';
+        }, 3000); // Display for 3 seconds
+    
 </script>
 {% endif %}
+
 {% endblock %}
 

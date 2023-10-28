@@ -61,6 +61,8 @@ def login():
 		if request.method == "POST":
 				session["Username"] = request.form.get("username_form")
 				session["Password"] = request.form.get("password_form")
+				global ack
+				ack = ""
 				return redirect("/manager")
 		return render_template("login.html")
 
